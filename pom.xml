@@ -9,7 +9,7 @@
 
     <artifactId>psexec-launcher</artifactId>
     <packaging>hpi</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <name>psexec-launcher</name>
 	<url>https://wiki.jenkins-ci.org/display/JENKINS/PSExec+Launcher</url>
 
