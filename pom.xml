@@ -11,6 +11,7 @@
     <packaging>hpi</packaging>
     <version>1.0-SNAPSHOT</version>
     <name>psexec-launcher</name>
+	<url>https://wiki.jenkins-ci.org/display/JENKINS/PSExec+Launcher</url>
 
     <dependencies>
         <dependency>
@@ -47,8 +48,8 @@
     </dependencies>
 	
 	<scm>
-		<connection>scm:git:ssh://github.com/huybrechts/psexec-launcher.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com/huybrechts/psexec-launcher.git</developerConnection>
+		<connection>scm:git:https://github.com/huybrechts/psexec-launcher.git</connection>
+		<developerConnection>scm:git:https://github.com/huybrechts/psexec-launcher.git</developerConnection>
 		<url>https://github.com/huybrechts/psexec-launcher</url>
 	</scm>
 
