@@ -46,7 +46,13 @@
         </dependency>
     </dependencies>
 	
-	<properties>
+	<scm>
+		<connection>scm:git:ssh://github.com/huybrechts/psexec-launcher.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/huybrechts/psexec-launcher.git</developerConnection>
+		<url>https://github.com/huybrechts/psexec-launcher</url>
+	</scm>
+
+  <properties>
 		<jenkins.version>1.424.1</jenkins.version>
 	</properties>
 
