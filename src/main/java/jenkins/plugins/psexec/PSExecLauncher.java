@@ -66,15 +66,17 @@ public class PSExecLauncher extends ComputerLauncher {
     private final String hostName;
     private final boolean runInteractive;
     private final boolean runAsSystem;
+    private final boolean runWithElevatedToken;
     private final String javaHome;
 
 
     @DataBoundConstructor
-    public PSExecLauncher(String userName, String password, String hostName, boolean runInteractive, boolean runAsSystem, String javaHome) {
+    public PSExecLauncher(String userName, String password, String hostName, boolean runInteractive, boolean runAsSystem, boolean runWithElevatedToken, String javaHome) {
         this.userName = userName;
         this.password = password;
         this.runInteractive = runInteractive;
         this.runAsSystem = runAsSystem;
+        this.runWithElevatedToken = runWithElevatedToken;
         this.javaHome = Util.fixEmptyAndTrim(javaHome);
         this.hostName = Util.fixEmptyAndTrim(hostName);
     }
@@ -103,6 +105,10 @@ public class PSExecLauncher extends ComputerLauncher {
         return javaHome;
     }
 
+    public boolean isRunWithElevatedToken() {
+        return runWithElevatedToken;
+    }
+
     /**
      * Gets the formatted current time stamp.
      */
@@ -123,15 +129,16 @@ public class PSExecLauncher extends ComputerLauncher {
         String javaHome = Util.fixEmptyAndTrim(this.javaHome);
         if (javaHome != null) javaw = javaHome + "\\bin\\" + javaw;
 
-        String remoteCommand = String.format("%s -cp \"%s\\slave.jar\" hudson.remoting.jnlp.Main -noreconnect -headless " +
-                "-url \"%s\" %s \"%s\"", javaw, computer.getNode().getRemoteFS(), Hudson.getInstance().getRootUrl(), Hudson.getInstance().getSecretKey(), computer.getName());
+        String remoteCommand = String.format("%s -Dhudson.remoting.Launcher.pingTimeoutSec=%d -cp \"%s\\slave.jar\" hudson.remoting.jnlp.Main -noreconnect -headless " +
+                "-url \"%s\" %s \"%s\"", javaw, 600, computer.getNode().getRemoteFS(), Jenkins.getInstance().getRootUrl(), computer.getJnlpMac(), computer.getName());
 
         String interActive = runInteractive ? "-i": "";
         String system = runAsSystem ? "-s":"";
+        String elevated = runWithElevatedToken ? "-h":"";
         String async = Boolean.getBoolean(getClass().getName() + ".SYNC") ? "" : "-d";
 
-        String command = String.format("%s \\\\%s -accepteula %s %s %s -u \"%s\" -p \"%s\" %s",
-                psexec, hostName, interActive, async, system, userName, password, remoteCommand);
+        String command = String.format("%s \\\\%s -accepteula %s %s %s %s -u \"%s\" -p \"%s\" %s",
+                psexec, hostName, interActive, async, system, elevated, userName, password, remoteCommand);
 
         copySlaveJar(computer, hostName, listener);
 

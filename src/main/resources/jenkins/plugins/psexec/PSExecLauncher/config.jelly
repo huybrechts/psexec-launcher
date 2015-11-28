@@ -32,12 +32,15 @@ THE SOFTWARE.
   <f:entry title="${%Host name}" field="hostName" description="If set, this is used to connect to the slave instead of the slaves name.">
     <f:textbox />
   </f:entry>
-    <f:entry title="Run in an interactive session" field="runInteractive">
+    <f:entry title="Run in an interactive session (-i)" field="runInteractive">
         <f:checkbox/>
     </f:entry>
-    <f:entry title="Run as SYSTEM" field="runAsSystem">
+    <f:entry title="Run as SYSTEM (-s)" field="runAsSystem">
         <f:checkbox/>
     </f:entry>
+  <f:entry title="Run with elevated token (-h)" field="runWithElevatedToken">
+    <f:checkbox/>
+  </f:entry>
     <f:entry title="Java home" field="javaHome" description="Location of Java install to use (optional).">
         <f:textbox/>
     </f:entry>
