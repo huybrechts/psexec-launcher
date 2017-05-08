@@ -15,8 +15,8 @@
 	<url>http://wikihealthcare.agfa.net/display/JEN/PSExec+Launcher</url>
 
 	<scm>
-		<connection>scm:git:https://github.com/huybrechts/psexec-launcher.git</connection>
-		<developerConnection>scm:git:https://github.com/huybrechts/psexec-launcher.git</developerConnection>
+		<connection>scm:git:git://github.com/huybrechts/psexec-launcher.git</connection>
+		<developerConnection>scm:git:git://github.com/huybrechts/psexec-launcher.git</developerConnection>
 		<url>https://github.com/huybrechts/psexec-launcher</url>
 	</scm>
 
