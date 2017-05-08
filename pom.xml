@@ -10,7 +10,7 @@
     <groupId>com.agfa.jenkins.plugins</groupId>
     <artifactId>psexec-launcher</artifactId>
     <packaging>hpi</packaging>
-    <version>1.1</version>
+    <version>1.2-SNAPSHOT</version>
     <name>psexec-launcher</name>
 	<url>http://wikihealthcare.agfa.net/display/JEN/PSExec+Launcher</url>
 
@@ -18,7 +18,7 @@
 		<connection>scm:git:git@github.com:huybrechts/psexec-launcher.git</connection>
 		<developerConnection>scm:git:git@github.com:huybrechts/psexec-launcher.git</developerConnection>
 		<url>https://github.com/huybrechts/psexec-launcher</url>
-	  <tag>psexec-launcher-1.1</tag>
+	  <tag>HEAD</tag>
   </scm>
 
     <properties>
