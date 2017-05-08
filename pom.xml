@@ -4,45 +4,45 @@
     <parent>
         <groupId>org.jenkins-ci.plugins</groupId>
         <artifactId>plugin</artifactId>
-		<version>1.625</version>
+        <version>2.9</version>
     </parent>
 
+    <groupId>com.agfa.jenkins.plugins</groupId>
     <artifactId>psexec-launcher</artifactId>
     <packaging>hpi</packaging>
     <version>1.1-SNAPSHOT</version>
     <name>psexec-launcher</name>
-	<url>https://wiki.jenkins-ci.org/display/JENKINS/PSExec+Launcher</url>
+	<url>http://wikihealthcare.agfa.net/display/JEN/PSExec+Launcher</url>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.jenkins-ci.main</groupId>
-            <artifactId>jenkins-war</artifactId>
-            <type>war</type>
-            <version>${jenkins.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jenkins-ci.main</groupId>
-            <artifactId>jenkins-core</artifactId>
-            <version>${jenkins.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jenkins-ci.main</groupId>
-            <artifactId>jenkins-test-harness</artifactId>
-            <version>${jenkins.version}</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-	
 	<scm>
 		<connection>scm:git:https://github.com/huybrechts/psexec-launcher.git</connection>
 		<developerConnection>scm:git:https://github.com/huybrechts/psexec-launcher.git</developerConnection>
 		<url>https://github.com/huybrechts/psexec-launcher</url>
 	</scm>
 
-  <properties>
-		<jenkins.version>1.625.2</jenkins.version>
-	</properties>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <findbugs.failOnError>false</findbugs.failOnError>
+        <java.level>8</java.level>
+    </properties>
+
+    <build>
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ssh</artifactId>
+				<version>2.4</version>
+			</extension>
+		</extensions>
+	</build>
+
+  <distributionManagement>
+    <repository>
+      <id>hap-repository</id>
+      <name>HAP Maven Repository</name>
+      <url>scp://maven-repository.agfahealthcare.com/maven-repository</url>
+      <uniqueVersion>true</uniqueVersion>
+    </repository>
+  </distributionManagement>
 
 </project>

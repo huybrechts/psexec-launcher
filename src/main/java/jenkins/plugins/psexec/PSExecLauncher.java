@@ -41,6 +41,7 @@ import hudson.util.ProcessTree;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -165,6 +166,8 @@ public class PSExecLauncher extends ComputerLauncher {
                 }
             }
 
+            LOGGER.info("slave agent launching for " + computer.getDisplayName());
+
             final Process proc = _proc = pb.start();
 
             // capture error information from stderr. this will terminate itself
@@ -174,7 +177,13 @@ public class PSExecLauncher extends ComputerLauncher {
             new StreamCopyThread("stdout copier for remote agent on " + computer.getDisplayName(),
                     proc.getInputStream(), listener.getLogger()).start();
 
+            if (!proc.waitFor(Integer.getInteger(PSExecLauncher.class.getName() + ".TIMEOUT", 120), TimeUnit.SECONDS)) {
+                proc.destroyForcibly();
+            }
+
             LOGGER.info("slave agent launched for " + computer.getDisplayName());
+        } catch (InterruptedException e) {
+            e.printStackTrace(listener.error(Messages.ComputerLauncher_unexpectedError()));
         } catch (RuntimeException e) {
             e.printStackTrace(listener.error(Messages.ComputerLauncher_unexpectedError()));
         } catch (Error e) {
